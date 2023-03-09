@@ -50,16 +50,6 @@ const Dashboard = ()=> {
     dispatch(loadUsers())
   }, []);
 
-  // useEffect(() => {
-  //   axios.get("https://api.postman.com/collections/20945399-f20f2cbe-0079-4d4e-932d-905793f9de5b?access_key=PMAT-01GJHM4C73YVP47S18YA6SG275").then((data) => {
-  //     console.log(data.data.collection.item)
-  //     setUserData(data.data.collection.item)
-  //   }).catch((err) => {
-  //     console.log(err)
-  //   })
-  //   // getData
-  // }, [])
-
   const handleDelete = (id) =>{
     // if(window.confirm("Are you sure")){
       dispatch(deleteUser(id))
@@ -67,34 +57,42 @@ const Dashboard = ()=> {
   }
 
   return (
+    <>
     <div>
-      <div className='border w-full bg-[#eeeff1] h-[50px] my-auto flex text-center mx-auto'><p className='text-center justif-center mx-auto py-auto'>Admin Dashboard</p></div>
-      <input onChange={(e)=>handleChange(e)} className='border border-[black]' type="text"></input>
+      <div className='border w-full bg-[#eeeff1] my-auto flex text-center mx-auto'><h1 className='text-center justif-center mx-auto py-4 text-[24px]'>Admin Dashboard</h1></div>
+      <input onChange={(e)=>handleChange(e)} className='border border-[black] mt-4' type="text"></input>
       <button onClick={handleSubmit} className='border'>Add user</button>
-      <table className="table-fixed">
-        <thead className='border bg-[grey]'>
-          <tr>
-            <th>S.No</th>
-            <th>Name</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {state.users.collection.item.length>0 && state.users.collection.item?.map((e) => {
+    </div>
+    <div class="flex flex-col">
+  <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+    <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+      <div class="overflow-hidden">
+        <table class="min-w-[70%] border mx-auto text-center text-sm font-light">
+          <thead class="border-b font-medium dark:border-neutral-500">
+            <tr>
+              {/* <th scope="col" class="px-6 py-4">S.No</th> */}
+              <th scope="col" class="px-6 py-4">Name</th>
+            </tr>
+          </thead>
+          <tbody>
+          {state.users.collection.item.length>0 && state.users.collection.item?.map((e,index) => {
             return (
               <>
-                <tr key={e.id}>
-                  <td>1</td>
-                  <td>{e.name}</td>
-                  <button onClick={()=>handleDelete(e.id)}>Delete</button>
+                <tr class="border-b dark:border-neutral-500" key={e.id}>
+                  {/* <td class="whitespace-nowrap px-6 py-4 font-medium">{index+1}</td> */}
+                  <td class="whitespace-nowrap px-6 py-4 font-medium">{e.name}</td>
+                  <button class="btn btn-blue border bg-[#6d9ebc] text-[white] rounded-[7px] px-4 py-3" onClick={()=>handleDelete(e.id)}>Delete</button>
                 </tr>
               </>
             )
           })}
-
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
     </div>
+  </div>
+</div>
+</>
   )
 }
 
