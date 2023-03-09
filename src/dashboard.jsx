@@ -15,7 +15,6 @@ const Dashboard = ()=> {
   // const [userData, setUserData] = useState<User[]>([])
   const [userData, setUserData] = useState([])
   const state = useSelector((state) => state.userReducer) || []
-  console.log(state, "statee")
   // const [name,setName] = useState("")
   const [newState,setNewState] = useState({
     name:""
@@ -27,7 +26,7 @@ const Dashboard = ()=> {
 
   const handleChange =(e)=>{
     let {name,value} = e.target
-    setNewState({...newState , [name]:value})
+    setNewState({...newState , "name":e.target.value})
     // setName(e.target.value)
   }
 
@@ -61,7 +60,7 @@ const Dashboard = ()=> {
     <div>
       <div className='border w-full bg-[#eeeff1] my-auto flex text-center mx-auto'><h1 className='text-center justif-center mx-auto py-4 text-[24px]'>Admin Dashboard</h1></div>
       <input onChange={(e)=>handleChange(e)} className='border border-[black] mt-4' type="text"></input>
-      <button onClick={handleSubmit} className='border'>Add user</button>
+      <button onClick={handleSubmit} className='border ml-4 bg-[#307a93] text-[white] rounded-[7px] py-1 px-2'>Add user</button>
     </div>
     <div class="flex flex-col">
   <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -75,7 +74,7 @@ const Dashboard = ()=> {
             </tr>
           </thead>
           <tbody>
-          {state.users.collection.item.length>0 && state.users.collection.item?.map((e,index) => {
+          {state?.users?.collection?.item?.length>0 && state.users.collection.item?.map((e,index) => {
             return (
               <>
                 <tr class="border-b dark:border-neutral-500" key={e.id}>

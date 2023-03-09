@@ -35,7 +35,7 @@ export const deleteUser = (id) => {
 }
 
 export const addUser = (user) => {
-    console.log("calling adduser")
+    console.log("calling adduser",user)
     return function (dispatch){
         axios.post("https://api.postman.com/collections/20945399-f20f2cbe-0079-4d4e-932d-905793f9de5b?access_key=PMAT-01GJHM4C73YVP47S18YA6SG275",user).then((response)=>{
             console.log("add res",response)
